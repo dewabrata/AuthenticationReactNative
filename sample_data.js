@@ -78,7 +78,7 @@ let data = {
         },
         {
             "name": "T-Shirt 0xx",
-            "sku": "SKU001",
+            "sku": "SKU002",
             "images": [
                 "http://intelvue.com/demo/app-template/light/p2.png",
                 "http://intelvue.com/demo/app-template/light/p3.png"
@@ -93,7 +93,7 @@ let data = {
         },
         {
             "name": "T-Shirt 0xx",
-            "sku": "SKU001",
+            "sku": "SKU003",
             "images": [
                 "http://intelvue.com/demo/app-template/light/p4.png",
                 "http://intelvue.com/demo/app-template/light/p5.png"
@@ -106,7 +106,7 @@ let data = {
             "specification": "<p>I am specs</p>"
         },{
             "name": "T-Shirt 0xx",
-            "sku": "SKU001",
+            "sku": "SKU004",
             "images": [
                 "http://intelvue.com/demo/app-template/light/p5.png",
                 "http://intelvue.com/demo/app-template/light/p6.png"
@@ -120,7 +120,7 @@ let data = {
         },
         {
             "name": "T-Shirt 0xx",
-            "sku": "SKU001",
+            "sku": "SKU005",
             "images": [
                 "http://intelvue.com/demo/app-template/light/p1.png",
                 "http://intelvue.com/demo/app-template/light/p2.png"
@@ -133,7 +133,7 @@ let data = {
             "specification": "<p>I am specs</p>"
         },{
             "name": "T-Shirt 0xx",
-            "sku": "SKU001",
+            "sku": "SKU006",
             "images": [
                 "http://intelvue.com/demo/app-template/light/p3.png",
                 "http://intelvue.com/demo/app-template/light/p4.png"
