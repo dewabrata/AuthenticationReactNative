@@ -13,6 +13,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './components/screen/login';
 import { NavigationContainer } from '@react-navigation/native';
 import test from './test';
+import Home from './components/screen/home';
 
 
 
@@ -24,8 +25,9 @@ class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Login" component={Login}  />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Home" component={Home} navigation={this.props.navigation} />
         </Stack.Navigator>
       </NavigationContainer>
 

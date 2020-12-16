@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { 
 	View, 
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/dist/Feather';
 import { Wrapper, Header, Left, Right, Container, Space, H1, P, Btn, LabelIconInput } from '../utils';
 import config from '../../config';
+
+import auth from '@react-native-firebase/auth';
 
  class Register extends Component {
 
@@ -34,7 +37,16 @@ import config from '../../config';
 
 
 
-    register() {}
+    register() {
+    
+    
+    auth()
+    .createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then(()=> Alert.alert("User Created"))
+    .catch(error =>  Alert.alert("Failed",error.message))
+    
+    
+    }
 
     render() {
         return (
@@ -62,7 +74,7 @@ import config from '../../config';
                             label={'Name'}
                             icon={'user'}
                             placeholderTextColor={'#999999'}
-                            onChangeText={(text) => this.setState({password: text})}
+                            onChangeText={(text) => this.setState({name: text})}
                             placeholder={'Enter your full name'}
                           
                             underlineColorAndroid={'transparent'}
@@ -72,7 +84,7 @@ import config from '../../config';
                             label={'Email'}
                             icon={'mail'}
                             placeholderTextColor={'#999999'}
-                            onChangeText={(text) => this.setState({password: text})}
+                            onChangeText={(text) => this.setState({email: text})}
                             placeholder={'Enter your email'}
                             underlineColorAndroid={'transparent'}
                         />

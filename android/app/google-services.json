@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "844891013240",
+    "firebase_url": "https://jualancupang-8f8cc-default-rtdb.firebaseio.com",
+    "project_id": "jualancupang-8f8cc",
+    "storage_bucket": "jualancupang-8f8cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844891013240:android:f84e32894f66ed74e4ed8d",
+        "android_client_info": {
+          "package_name": "com.belajarnavigationandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844891013240-12t0vqcaud55098k1p0tbt2cptstirmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo5Le6Kb08EedfjC7JnvWp1_9NWA5PegM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844891013240-12t0vqcaud55098k1p0tbt2cptstirmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { 
 	View, 
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/dist/Feather';
 import { Wrapper, Header, Left, Right, Container, Space, H1, P, Btn, LabelIconInput } from '../utils';
 import config from '../../config';
+import auth from '@react-native-firebase/auth'
 
 class Login extends Component {
 
@@ -23,9 +25,33 @@ class Login extends Component {
         super(props);
     }
 
-  
+    componentDidMount(){
+    
+          
+            
+         
+        }
+        
 
-    login() {}
+    login() {
+         auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+          console.log('User account created & signed in!');
+          this.props.navigation.navigate("Home");
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            Alert.alert('That email address is already in use!');
+          }
+      
+          if (error.code === 'auth/invalid-email') {
+            Alert.alert('That email address is invalid!');
+          }
+      
+          Alert.alert("Failed",error.message);
+        });
+    }
 
     render() {
         return (
@@ -75,7 +101,7 @@ class Login extends Component {
                         
                         <Space />
                         
-                        <Btn label={'Log In'} onPress={() => this.props.navigation.navigate("Home")} />
+                        <Btn label={'Log In'} onPress={() => this.login()} />
 
                     </View>
 
