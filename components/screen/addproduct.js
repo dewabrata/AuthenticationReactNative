@@ -16,6 +16,7 @@ import sample_data from '../../sample_data';
 
 import ProductListItem from '../reuse/ProductListItem';
 import database from '@react-native-firebase/database';
+import storage from '@react-native-firebase/storage';
 import { RNCamera } from 'react-native-camera';
 
 
@@ -116,7 +117,6 @@ class Addproduct extends React.Component {
 					extraData={this.state}
 
 					renderItem={({ item, index }) => <ProductListItem item={item} onPress={() => {
-
 						this.setState({
 							id: item.id,
 							name: item.name,
@@ -129,13 +129,17 @@ class Addproduct extends React.Component {
 							key: item.key
 
 						})
+						this.dummyImagesTest = item.key
 						this.setState({ showAddressModal: true })
 						this.setState({ isEdit: true })
+						
+					
 					}
 					} />}
 				/>
 
 				<Btn label="Add Data" onPress={() => {
+				   
 					this.setState({ showAddressModal: true })
 					this.setState({ isEdit: false })
 				}} />
@@ -160,7 +164,18 @@ class Addproduct extends React.Component {
 				<Header>
 					<Left>
 						<IconBtn icon={'x'}
-							onPress={() => this.setState({ showAddressModal: false })}
+							onPress={() => this.setState({
+								showAddressModal: false,
+								id: "",
+								name: "",
+								rating: "",
+								price: "",
+								description: null,
+								specification: "",
+								brand_name: "",
+								images: "",
+								camera_capture:""
+							})}
 							style={{ marginLeft: -10 }}
 						/>
 					</Left>
@@ -294,15 +309,13 @@ class Addproduct extends React.Component {
 					</Row>
 				
 					<Space/>
-					<Image
-						  source = {{uri:this.state.camera_capture}}
-						  style={{ width: 300, height: 400 }}
-						/>
+					
+					<Image	source = {{uri:this.state.images}} style={{ width: 300, height: 400 }}/>
 
 					<Space />
 
 					{this.addOrEdit()}
-
+					
 
 				</Container>
 
@@ -310,18 +323,58 @@ class Addproduct extends React.Component {
 		);
 	}
 	
+	
+
+	
+	uploadFile = async () =>{
+	
+	
+	try{
+	    let filename = this.state.camera_capture.substring(this.state.camera_capture.lastIndexOf('/')+1);
+		console.log(filename);
+		const imagereference =  storage().ref(filename)
+        
+			await imagereference.putFile(this.state.camera_capture);
+			const downloadURL = await  imagereference.getDownloadURL();
+			this.setState({images:downloadURL})
+			
+	}catch(e){
+	console.log(e);
+	}
+	
+	
+	if (this.state.isEdit) {
+		
+		this.editProduct()
+		
+	}else{
+	
+	
+	    this.addProduct();
+	
+	}
+		 
+	
+	
+	
+	
+	}
+	
 	takePicture = async function(camera) {
 	try{
 		const options = { quality: 0.5, base64: true };
 		const data = await camera.takePictureAsync(options);
 		//  eslint-disable-next-lin
-		this.setState({camera_capture:data.uri})
+		this.setState({images:data.uri, camera_capture:data.uri})
 		console.log(data.uri);
 	}catch(err){
 	console.log(err)
 	    }
 	  };
 		
+		
+
+    
 	
 
 	addOrEdit() {
@@ -331,14 +384,14 @@ class Addproduct extends React.Component {
 			return (
 				<Btn
 					label={'Edit Product'}
-					onPress={() => this.editProduct()}
+					onPress={() => this.uploadFile()}
 				/>
 			)
 		} else {
 			return (
 				<Btn
 					label={'Add Product'}
-					onPress={() => this.addProduct()}
+					onPress={() => this.uploadFile()}
 				/>
 			)
 		}
@@ -385,6 +438,7 @@ class Addproduct extends React.Component {
 				specification: "",
 				brand_name: "",
 				images: "",
+				camera_capture:""
 			})
 		}).catch((error) => {
 			//error callback
@@ -432,6 +486,7 @@ class Addproduct extends React.Component {
 				specification: "",
 				brand_name: "",
 				images: "",
+				camera_capture:""
 			})
 		}).catch((error) => {
 			//error callback

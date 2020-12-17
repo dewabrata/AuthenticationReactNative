@@ -26,7 +26,7 @@ export default class ProductListItem extends React.Component {
 					{
 							this.props.item.images.length > 0 ? 
 								<Image 
-				                    source={{uri: this.props.item.images[0]}}
+				                    source={{uri: this.props.item.images}}
 				                    style={styles.image} 
 				                /> : 
 				                <Image 
